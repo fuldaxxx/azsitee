@@ -39,8 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'djoser',
-
+    'mptt',
+    'drf_yasg',
+    'src.followers',
     'src.profiles',
+    'src.wall',
 ]
 
 MIDDLEWARE = [
@@ -156,7 +159,18 @@ REST_FRAMEWORK = {
     ),
 }
 
+DJOSER ={
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_COMFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
+    'SERIALIZERS': {},
+}
 
 SIMPLE_JWT = {
-   #'AUTH_HEADER_TYPES': ('JWT',),
+
+    'ROTATE_REFRASH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
 }
+
+AUTH_USER_MODEL = 'profiles.UserNet'
